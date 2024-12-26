@@ -7,8 +7,8 @@ def save_text_to_file(filename, text):
         text (str): The text to save in the file.
     """
     try:
-        with open(filename, 'w', encoding='utf-8') as file:
-            file.write(text)
+        with open(filename, 'a', encoding='utf-8') as file:  # Changed to append mode
+            file.write(text + '\n')  # Add a newline after each text input
         print(f"Text successfully saved to {filename}")
     except Exception as e:
         print(f"An error occurred: {e}")
@@ -16,5 +16,10 @@ def save_text_to_file(filename, text):
 # Example usage
 if __name__ == "__main__":
     filename = input("Enter the filename (with extension): ")
-    text = input("Enter the text to save: ")
-    save_text_to_file(filename, text)
+    print("Start entering text. Type 'exit' to finish.")
+    while True:
+        text = input("Enter the text to save: ")
+        if text.lower() == 'exit':
+            print("Exiting and saving text.")
+            break
+        save_text_to_file(filename, text)
